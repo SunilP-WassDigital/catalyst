@@ -7,6 +7,7 @@ import { client } from '~/client';
 import { graphql } from '~/client/graphql';
 import { revalidate } from '~/client/revalidate-target';
 import { Hero } from '~/components/hero';
+import { HomePagePosts } from '~/components/contentful/index';
 import {
   ProductCardCarousel,
   ProductCardCarouselFragment,
@@ -80,6 +81,7 @@ export default async function Home({ params: { locale } }: Props) {
           />
         </NextIntlClientProvider>
       </div>
+      <HomePagePosts/>
     </>
   );
 }
