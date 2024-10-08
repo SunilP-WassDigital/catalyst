@@ -11,6 +11,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@icons-pack/react-simple-icons'],
   },
+  future: {
+    preserveSharedStateOnUnmount: true,
+  },
   typescript: {
     ignoreBuildErrors: !!process.env.CI,
   },
@@ -27,7 +30,13 @@ const nextConfig = {
         set() {},
       });
     }
-
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      buffer: require.resolve('buffer'), // Buffer polyfill
+      crypto: require.resolve('crypto-browserify'), // Crypto polyfill
+      stream: require.resolve('stream-browserify'), // Stream polyfill
+      vm: require.resolve('vm-browserify')
+    };
     return config;
   },
   // default URL generation in BigCommerce uses trailing slash
@@ -50,6 +59,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn11.bigcommerce.com',
       },
     ],
   }

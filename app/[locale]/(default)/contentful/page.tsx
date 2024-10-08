@@ -25,21 +25,26 @@ export default async function ContentfulPage() {
 
   const data = await contentfulClient.query(GetBlogPostsQuery, {});
   return (
-    <div className="space-y-4">
-      <h1>Contentful Page</h1>
+    <div className="space-y-4 p-5">
+    <h1>Contentful Page</h1>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {data.data?.pageBlogPostCollection?.items.map((post) => (
-        <div className="rounded-lg border p-4" key={post?.sys.id}>
-           <Link href={`/contentful/${post?.slug}`}>
-          <h2>{post?.title}</h2>
+        <div className="rounded-lg border p-4 flex items-start space-x-4" key={post?.sys.id}>
           <Image
             alt={post?.featuredImage?.description ?? ''}
             height={200}
             src={post?.featuredImage?.url ?? ''}
             width={200}
+            className="rounded-md"
           />
-           </Link>
+          <div>
+            <Link href={`/contentful/${post?.slug}`}>
+              <h2 className="text-xl font-bold">{post?.title}</h2>
+            </Link>
+          </div>
         </div>
       ))}
     </div>
+  </div>
   );
 }

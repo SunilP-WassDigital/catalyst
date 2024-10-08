@@ -85,7 +85,6 @@ const variables = {
               width={1500}
             />
           <h3 className='prose mt-8 border-t pt-8'>{post?.shortDescription}</h3>
-          {/* {documentToReactComponents(post?.content.json)} */}
           <RichText document={post?.content.json} />
           <div className="mb-10 flex mt-8 border-t pt-8">
           {post.relatedBlogPostsCollection.items ? (
