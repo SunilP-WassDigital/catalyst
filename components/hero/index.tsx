@@ -14,6 +14,7 @@ const GetBlogPostsQuery = contentfulGraphql(`
         url
         description
       }
+      headline
     }
   }
 }
@@ -24,13 +25,23 @@ console.log(data);
 
 const slides = data?.homepageBannerCollection?.items.map((post) => (
   <div className="slide" key={post?.sys.id}>
-    <Image
-      src={post?.banner?.url || '/placeholder.png'} // Fallback image
-      alt={post?.banner?.description || 'No description'}
-      width={800}
-      height={800}
-    />    
+     <div
+    key={post?.sys?.id}  // It's a good practice to add a key when mapping over elements.
+    className="relative bg-cover bg-center h-screen"
+    style={{
+      backgroundImage: `url(${post?.banner?.url || '/placeholder.png'})`,
+    }}
+  >
+    <div className="absolute inset-0 bg-black bg-opacity-10 flex items-center justify-start">
+      <div className="w-1/2 pl-8">  {/* w-1/3 sets the width to 30% */}
+      <h1 className="text-black text-lg md:text-2xl font-semibold leading-relaxed">
+          {post?.headline || 'Your Text Here'}
+        </h1>
+      </div>
+    </div>
   </div>
+</div>
 ));
-console.log(slides);
-export const Hero = () => <Slideshow slides={slides} />;
+export const Hero = () => {
+  return slides
+}
