@@ -5,7 +5,7 @@ import { ResultOf } from 'gql.tada';
 
 import { getSessionCustomerId } from '~/auth';
 import { ProductCardFragment } from '~/components/product-card';
-
+console.log(111111111111);
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '',
   process.env.NEXT_PUBLIC_ALGOLIA_APP_KEY || '',
@@ -84,6 +84,7 @@ interface Product {
   metafields: unknown;
   objectID: string;
   _highlightResult: HighlightResult;
+  blog:string[]
 }
 
 interface ProductImage {
@@ -172,11 +173,13 @@ interface QuickSearchProduct {
     }[];
   };
   brand: ResultOf<typeof ProductCardFragment>['brand'];
+  blog :{
+    title:string
+  }
   reviewSummary: null
 }
-
 export const getQuickSearchResults = cache(async ({ searchTerm }: QuickSearch) => {
-  console.log('coming');
+
   const selectedCurrency = 'USD'; // TODO: use selected storefront currency
   const customerId = await getSessionCustomerId(); // Customer specific product viz / pricing not implmented in Algolia's app integration yet
 
@@ -190,7 +193,7 @@ export const getQuickSearchResults = cache(async ({ searchTerm }: QuickSearch) =
         },
       },
     ]);
-    console.log(results);
+    
     const products: QuickSearchProduct[] = results[0].hits.map((hit: Product) => ({
       entityId: hit.objectID,
       name: hit.name,
@@ -210,6 +213,9 @@ export const getQuickSearchResults = cache(async ({ searchTerm }: QuickSearch) =
       brand: {
         name: hit.brand_name,
         path: `/${hit.brand_name.replaceAll(' ', '-').toLowerCase()}`, // Not implmented in Algolia's app integration yet
+      },
+      blog: {
+        name: hit.title
       },
       reviewSummary: null, // Not implmented in Algolia's app integration yet
       prices: {

@@ -8,12 +8,10 @@ function SearchHits() {
     currency: 'USD',
   });
   const { results } = useInstantSearch();
-
-
   return (
     <div>
       {results.hits.length > 0 && (
-        <div className="mt-8 grid overflow-auto px-1 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-8 grid overflow-auto px-1 lg:grid-cols-4 lg:gap-6">
           <section>
             <h3 className="mb-6 border-b border-gray-200 pb-3 text-h5">Categories</h3>
             <ul id="categories" role="listbox">
@@ -27,7 +25,7 @@ function SearchHits() {
                       categories_without_path: [];
                     },
                   ) => {
-                    categories_without_path.forEach((category) => {
+                    categories_without_path && categories_without_path.forEach((category) => {
                       categories[category] = category;
                     });
 
@@ -54,18 +52,23 @@ function SearchHits() {
             <ul id="products" role="listbox">
               {results.hits.map(
                 ({
+                  product_id,
                   default_price,
                   image_url,
                   name,
                   objectID,
                   url,
                 }: {
+                  product_id: string;
                   default_price: string;
                   image_url: string;
                   name: string;
                   objectID: string;
                   url: string;
                 }) => {
+                  if(!product_id){
+                    return null;
+                  }
                   return (
                     <li key={objectID}>
                       <a
@@ -136,6 +139,38 @@ function SearchHits() {
               })}
             </ul>
           </section>
+          <section>
+      <h3 className="mb-6 border-b border-gray-200 pb-3 text-h5">Blog Posts</h3>
+      <ul id="blog-posts" role="listbox">
+        {results.hits.map(({ objectID, fields, excerpt, image_url, url }) => {
+          // Debugging logs
+          console.log("Blog Post Fields:", fields);
+
+          const title = fields?.title?.['en-US']; // Access the title using the 'en-US' key
+          const excerptText = excerpt || "No excerpt available"; // Fallback for excerpt
+          if(!title){
+            return null;
+          }
+          return (
+            <li key={objectID}>
+              <a className="focus:ring-primary-blue/20 align-items mb-6 flex gap-x-6 focus:outline-none focus:ring-4" href={url}>
+                {image_url ? (
+                  <Image alt={title} className="self-start object-contain" height={80} src={image_url} width={80} />
+                ) : (
+                  <span className="flex h-20 w-20 flex-shrink-0 items-center justify-center bg-gray-200 text-h6 text-gray-500">
+                    Photo
+                  </span>
+                )}
+                <span className="flex flex-col">
+                  <p className="text-h5">{title || "No Title Available"}</p>
+                  <p className="w-36 shrink-0">{excerptText}</p>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
         </div>
       )}
       {results.query.length >= 3 && results.hits.length === 0 && (
