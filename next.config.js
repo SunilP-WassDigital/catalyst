@@ -31,11 +31,7 @@ const nextConfig = {
       });
     }
     config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      buffer: require.resolve('buffer'), // Buffer polyfill
-      crypto: require.resolve('crypto-browserify'), // Crypto polyfill
-      stream: require.resolve('stream-browserify'), // Stream polyfill
-      vm: require.resolve('vm-browserify')
+      ...(config.resolve.alias || {})
     };
     return config;
   },
