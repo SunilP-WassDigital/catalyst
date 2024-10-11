@@ -90,7 +90,7 @@ interface Props {
   data: FragmentOf<typeof FooterFragment>;
 }
 
-const users = async function(req, res) {
+const users = async function(req:any, res:any) {
   const response = await fetch('https://reqres.in/api/users', {
     method: 'GET', // Or POST, PUT, DELETE, etc.
     headers: {

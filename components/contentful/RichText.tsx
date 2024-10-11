@@ -5,7 +5,7 @@ import Image from 'next/image';
 // INLINES.EMBEDDED_ENTRY (linked inline entries e.g. a reference to another page blog post)
 // and BLOCKS.EMBEDDED_ASSET (linked assets e.g. images)
 
-function renderOptions(links) {
+function renderOptions(links:any) {
   // create an asset map
   const assetMap = new Map();
   // loop through the assets and add them to the map
@@ -30,7 +30,7 @@ function renderOptions(links) {
 
     renderNode: {
       // other options...
-      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+      [INLINES.EMBEDDED_ENTRY]: (node:any, children:any) => {
         // find the entry in the entryMap by ID
         const entry = entryMap.get(node.data.target.sys.id);
         // render the entries as needed
@@ -40,7 +40,7 @@ function renderOptions(links) {
 			    );
         }
       },
-	  [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+	  [BLOCKS.EMBEDDED_ENTRY]: (node:any, children:any) => {
       // find the entry in the entryMap by ID
         const entry = entryMap.get(node.data.target.sys.id);
         if (entry.__typename === "ComponentRichImage") {
@@ -79,7 +79,7 @@ function renderOptions(links) {
         }
       },
 
-      [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+      [BLOCKS.EMBEDDED_ASSET]: (node:any, next:any) => {
         // find the asset in the assetMap by ID
         const asset = assetMap.get(node.data.target.sys.id);
 
@@ -89,7 +89,7 @@ function renderOptions(links) {
         );
       },
 
-	  [BLOCKS.PARAGRAPH]: (node, children) => {
+	  [BLOCKS.PARAGRAPH]: (node:any, children:any) => {
         // find the asset in the assetMap by ID
        // const asset = assetMap.get(node.data.target.sys.id);
 
@@ -105,7 +105,7 @@ function renderOptions(links) {
 // Render pageBlogPost.content.json to the DOM using
 // documentToReactComponents from "@contentful/rich-text-react-renderer"
 
-export default function RichText(props) {
+export default function RichText(props:any) {
   const { document } = props;
   return <>{documentToReactComponents(document.json, renderOptions(document.links))}</>;
 }

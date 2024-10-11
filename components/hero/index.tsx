@@ -23,7 +23,7 @@ const GetBlogPostsQuery = contentfulGraphql(`
 const { data } = await contentfulClient.query(GetBlogPostsQuery, {});
 console.log(data);
 
-const slides = data?.homepageBannerCollection?.items.map((post) => (
+const slides = data?.homepageBannerCollection?.items.map((post:any) => (
   <div className="slide" key={post?.sys.id}>
      <div
     key={post?.sys?.id}  // It's a good practice to add a key when mapping over elements.

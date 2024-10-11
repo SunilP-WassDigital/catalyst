@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-import { Sheet } from '~/components/ui/sheet';
+import { Sheet } from '~/components/ui/sheet2';
 
 import { ProductSheetContent } from './product-sheet-content';
 

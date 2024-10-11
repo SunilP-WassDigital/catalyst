@@ -4,9 +4,6 @@ import { KvAdapter, SetCommandOptions } from './types';
 interface Config {
   logger?: boolean;
 }
-export const config = {
-  runtime: 'nodejs', // Use Node.js runtime for this specific API route
-}
 
 const memoryKv = new MemoryKvAdapter();
 

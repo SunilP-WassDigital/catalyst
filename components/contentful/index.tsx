@@ -28,7 +28,7 @@ export const HomePagePosts = async () => {
   return (<>
     <div className='flex items-center justify-between'><h2 className='text-3xl font-black lg:text-4xl'>Contentful Post</h2></div>
     <div className="grid grid-cols-4 gap-4 p-10">
-      {data?.pageBlogPostCollection?.items.map((post) => (
+      {data?.pageBlogPostCollection?.items.map((post:any) => (
         <div className="grid-cols-4" key={post?.sys.id}>
           <Image
             alt={post?.featuredImage?.description || 'No description'}
