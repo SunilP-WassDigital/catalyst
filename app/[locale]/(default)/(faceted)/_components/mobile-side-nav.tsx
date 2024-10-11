@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { Button } from '~/components/ui/button';
-import { Sheet } from '~/components/ui/sheet';
+import { Sheet } from '~/components/ui/sheet2';
 
 export const MobileSideNav = ({ children }: PropsWithChildren) => {
   const [open, setOpen] = useState(false);

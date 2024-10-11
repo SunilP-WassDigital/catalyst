@@ -117,7 +117,7 @@ const variables = {
   return (
     <div className="mx-auto max-w-6xl">
       <Link href="/contentful">← Posts</Link>
-      {data.data?.pageBlogPostCollection?.items.map((post) => (
+      {data.data?.pageBlogPostCollection?.items.map((post:any) => (
         <div className="prose mt-8 border-t pt-8" key={post?.sys.id}>
            <h1 className="mb-2 text-3xl font-black lg:text-5xl">{post?.title}</h1>
            <div className="mb-8 flex">
@@ -152,7 +152,7 @@ const variables = {
           )}
           </div>
           <nav className="flex sm:justify-center space-x-4">
-          {post.relatedBlogPostsCollection.items.map((relatedPage) => (
+          {post.relatedBlogPostsCollection.items.map((relatedPage:any) => (
               <Link href={`/contentful/${relatedPage.slug}`} className="delay-100 duration-100 transform hover:scale-105 transition ease-linear bg-gray-100 px-2 py-2 m-4 inline text-blue-900">{relatedPage.title}</Link>
           ))}
           </nav>

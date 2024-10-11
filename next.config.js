@@ -31,7 +31,9 @@ const nextConfig = {
       });
     }
     config.resolve.alias = {
-      ...(config.resolve.alias || {})
+      ...(config.resolve.alias || {}),
+      crypto: require.resolve('crypto-browserify'), // Crypto polyfill
+      stream: require.resolve('stream-browserify'), // Stream polyfill
     };
     return config;
   },

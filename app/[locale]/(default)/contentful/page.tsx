@@ -28,7 +28,7 @@ export default async function ContentfulPage() {
     <div className="space-y-4 p-5">
     <h1>Contentful Page</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {data.data?.pageBlogPostCollection?.items.map((post) => (
+      {data.data?.pageBlogPostCollection?.items.map((post:any) => (
         <div className="rounded-lg border p-4 flex items-start space-x-4" key={post?.sys.id}>
           <Image
             alt={post?.featuredImage?.description ?? ''}

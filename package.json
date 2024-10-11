@@ -12,7 +12,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@algolia/requester-fetch": "^5.0.0",
     "@bigcommerce/catalyst-client": "^0.5.0",
     "@contentful/rich-text-react-renderer": "^15.22.11",
     "@icons-pack/react-simple-icons": "^9.6.0",
@@ -39,6 +38,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "content-security-policy-builder": "^2.2.0",
+    "crypto-browserify": "^3.12.0",
     "embla-carousel-react": "8.1.8",
     "focus-trap-react": "^10.2.3",
     "gql.tada": "^1.8.3",
@@ -61,6 +61,7 @@
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "sharp": "^0.33.4",
+    "stream-browserify": "^3.0.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-radix": "^3.0.3",
     "util-deprecate": "^1.0.2",
