@@ -5,7 +5,7 @@ import { withRoutes } from './middlewares/with-routes';
 export const middleware = composeMiddlewares(withAuth, withRoutes);
 
 export const config = {
-  unstable_allowDynamic:['upstash'],
+  unstable_allowDynamic:['**'],
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
